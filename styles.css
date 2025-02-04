@@ -255,11 +255,19 @@ h3 {
 .service {
     flex: 1;
     min-width: 250px;
+<<<<<<< HEAD
+=======
+    justify-content: center;
+>>>>>>> master
     margin: 20px;
     padding: 20px;
     background-color: #f1f1f1;
     border-radius: 10px;
+<<<<<<< HEAD
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+=======
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+>>>>>>> master
 }
 
 .service h3 {

@@ -1,0 +1,14 @@
+# Ignore all files outside the GeoPima folder
+../*
+
+# Ignore system and temporary files
+.DS_Store
+*.log
+*.zip
+*.mp3
+*.mp4
+*.pdf
+*.docx
+*.pptx
+*.png
+*.jpg
