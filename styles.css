@@ -142,30 +142,32 @@ h3 {
 
 .carousel {
     position: absolute;
-    top: 100px;
+    top: 0;
     left: 50%;
     transform: translateX(-50%);
-    width: 80%;
-    height: 250px;
+    width: 100%;
+    height: 100%;
     overflow: hidden;
-    z-index: 2;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    z-index: 1; /* Image behind the text */
 }
 
 .carousel-image {
-    width: 600px;
-    max-width: 100%;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensures the image covers the entire screen */
+    object-position: center; /* Keeps the center of the image visible */
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
 }
 
 .hero-content {
     flex: 1;
     padding: 20px;
-    z-index: 2;
+    z-index: 2; /* Ensures text is above the image */
     text-align: center;
-    margin-top: 250px;
+    margin-top: -100px; /* Adjust to align content properly */
+    opacity: 0; /* Start with text hidden */
+    transform: translateY(30px); /* Start with text slightly down */
+    animation: fadeInUp 1s ease forwards; /* Animation to show text */
 }
 
 .hero-content h1 {
@@ -190,6 +192,18 @@ h3 {
     background-color: var(--brick-red);
 }
 
+/* Keyframes for text animation */
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 /* Section: What We Do */
 #whatwedo {
     padding: 60px 0;
@@ -208,6 +222,9 @@ h3 {
 .whatwedo-image {
     flex: 1;
     max-width: 400px;
+    opacity: 0;
+    transform: translateX(-50px);
+    transition: opacity 0.8s, transform 0.8s;
 }
 
 .whatwedo-image img {
@@ -220,6 +237,9 @@ h3 {
 .whatwedo-text {
     flex: 2;
     padding-left: 20px;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s, transform 0.8s;
 }
 
 @keyframes fadeInUp {
@@ -233,9 +253,25 @@ h3 {
     }
 }
 
+@keyframes slideInLeft {
+    0% {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
 .appear {
     animation: fadeInUp 0.8s ease forwards;
 }
+
+.slide-in-left {
+    animation: slideInLeft 0.8s ease forwards;
+}
+
 .hidden {
     opacity: 0;
 }
@@ -255,19 +291,12 @@ h3 {
 .service {
     flex: 1;
     min-width: 250px;
-<<<<<<< HEAD
-=======
     justify-content: center;
->>>>>>> master
     margin: 20px;
     padding: 20px;
     background-color: #f1f1f1;
     border-radius: 10px;
-<<<<<<< HEAD
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-=======
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
->>>>>>> master
 }
 
 .service h3 {

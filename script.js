@@ -28,6 +28,7 @@ document.addEventListener("DOMContentLoaded", function () {
     window.addEventListener("scroll", updateActiveLink);
     updateActiveLink();
 
+    // Carousel logic
     const images = [
         'img/home.jpg',
         'img/home1.jpg',
@@ -44,41 +45,46 @@ document.addEventListener("DOMContentLoaded", function () {
 
     setInterval(changeImage, 3000);
 
-});
-window.onload = function() {
-    closeSidebar(event);
-};
-function showSidebar(){
-    const sidebar = document.querySelector('.sidebar')
-    sidebar.style.display = 'flex';
-}
-function closeSidebar(event){
-    event.preventDefault();
-    const sidebar = document.querySelector('.sidebar')
-    sidebar.style.display = 'none';
-}
-function toggleAnswer(faqItem) {
-    faqItem.classList.toggle('active');
-    const answer = faqItem.querySelector('.faq-answer');
-    
-    if (answer.style.display === 'block') {
-        answer.style.display = 'none';
-    } else {
-        answer.style.display = 'block';
-    }
-}
-// Function to check if the element is in the viewport
-function isElementInViewport(el) {
-    const rect = el.getBoundingClientRect();
-    return (
-        rect.top >= 0 &&
-        rect.left >= 0 &&
-        rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
-        rect.right <= (window.innerWidth || document.documentElement.clientWidth)
-    );
-}
+    // Sidebar logic
+    window.onload = function() {
+        closeSidebar(event);
+    };
 
-    // Function to handle scroll events
+    function showSidebar() {
+        const sidebar = document.querySelector('.sidebar');
+        sidebar.style.display = 'flex';
+    }
+
+    function closeSidebar(event) {
+        event.preventDefault();
+        const sidebar = document.querySelector('.sidebar');
+        sidebar.style.display = 'none';
+    }
+
+    // FAQ toggle logic
+    function toggleAnswer(faqItem) {
+        faqItem.classList.toggle('active');
+        const answer = faqItem.querySelector('.faq-answer');
+        
+        if (answer.style.display === 'block') {
+            answer.style.display = 'none';
+        } else {
+            answer.style.display = 'block';
+        }
+    }
+
+    // Function to check if the element is in the viewport
+    function isElementInViewport(el) {
+        const rect = el.getBoundingClientRect();
+        return (
+            rect.top >= 0 &&
+            rect.left >= 0 &&
+            rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+            rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+        );
+    }
+
+    // Function to handle scroll events for animation
     function handleScroll() {
         const sectionsToAnimate = document.querySelectorAll('.hidden'); // Select all hidden elements
         sectionsToAnimate.forEach(section => {
@@ -87,7 +93,20 @@ function isElementInViewport(el) {
                 section.classList.remove('hidden'); // Remove hidden class
             }
         });
+
+        // Specifically animate the "What We Do" section
+        const whatwedoContent = document.querySelector('.whatwedo-content');
+        const image = document.querySelector('.whatwedo-image');
+        const text = document.querySelector('.whatwedo-text');
+
+        if (isElementInViewport(whatwedoContent)) {
+            image.classList.add('slide-in-left');
+            text.classList.add('appear');
+        }
     }
 
-// Add scroll event listener
-window.addEventListener('scroll', handleScroll);
+    // Add scroll event listener
+    window.addEventListener('scroll', handleScroll);
+    handleScroll(); // Initial check when the page loads
+
+});
