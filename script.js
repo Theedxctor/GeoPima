@@ -31,7 +31,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // Carousel logic
     const images = [
         'img/home.jpg',
-        'img/home1.jpg',
+        'img/home1.jpeg',
         'img/home2.jpg'
     ];
     
