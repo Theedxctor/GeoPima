@@ -1,8 +1,7 @@
-document.addEventListener("DOMContentLoaded", function () {
+// document.addEventListener("DOMContentLoaded", function () {
     const sections = document.querySelectorAll("section");
     const navLinks = document.querySelectorAll(".navbar a");
 
-    // Function to update the active link
     function updateActiveLink() {
         let currentSection = "hero";
 
@@ -15,7 +14,6 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         });
 
-        // Update navbar links
         navLinks.forEach((link) => {
             link.classList.remove("active");
             if (link.getAttribute("href").substring(1) === currentSection) {
@@ -24,11 +22,9 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
-    // Listen for scroll events
     window.addEventListener("scroll", updateActiveLink);
     updateActiveLink();
 
-    // Carousel logic
     const images = [
         'img/home.jpg',
         'img/home1.jpeg',
@@ -45,35 +41,24 @@ document.addEventListener("DOMContentLoaded", function () {
 
     setInterval(changeImage, 3000);
 
-    // Sidebar logic
     window.onload = function() {
         closeSidebar(event);
     };
 
     function showSidebar() {
-        const sidebar = document.querySelector('.sidebar');
-        sidebar.style.display = 'flex';
+        document.querySelector('.sidebar').style.display = 'flex';
     }
 
     function closeSidebar(event) {
         event.preventDefault();
-        const sidebar = document.querySelector('.sidebar');
-        sidebar.style.display = 'none';
+        document.querySelector('.sidebar').style.display = 'none';
     }
 
-    // FAQ toggle logic
     function toggleAnswer(faqItem) {
-        faqItem.classList.toggle('active');
         const answer = faqItem.querySelector('.faq-answer');
-        
-        if (answer.style.display === 'block') {
-            answer.style.display = 'none';
-        } else {
-            answer.style.display = 'block';
-        }
+        answer.classList.toggle('show');
     }
 
-    // Function to check if the element is in the viewport
     function isElementInViewport(el) {
         const rect = el.getBoundingClientRect();
         return (
@@ -84,17 +69,14 @@ document.addEventListener("DOMContentLoaded", function () {
         );
     }
 
-    // Function to handle scroll events for animation
     function handleScroll() {
-        const sectionsToAnimate = document.querySelectorAll('.hidden'); // Select all hidden elements
-        sectionsToAnimate.forEach(section => {
+        document.querySelectorAll('.hidden').forEach(section => {
             if (isElementInViewport(section)) {
-                section.classList.add('appear'); // Add the appear class
-                section.classList.remove('hidden'); // Remove hidden class
+                section.classList.add('appear');
+                section.classList.remove('hidden');
             }
         });
 
-        // Specifically animate the "What We Do" section
         const whatwedoContent = document.querySelector('.whatwedo-content');
         const image = document.querySelector('.whatwedo-image');
         const text = document.querySelector('.whatwedo-text');
@@ -105,8 +87,6 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
-    // Add scroll event listener
     window.addEventListener('scroll', handleScroll);
-    handleScroll(); // Initial check when the page loads
-
-});
+    handleScroll();
+// });
